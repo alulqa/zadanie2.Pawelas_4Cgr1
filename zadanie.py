@@ -7,19 +7,16 @@ class Produkt:
         self.kategoria = kategoria
         self.ilosc = int(ilosc)
 
-
 magazyn = [
     Produkt("mleko", 4.50, "spozywczy", 5),
     Produkt("sól", 2.50, "przyprawa", 0)
 ]
-
 
 dane_do_zapisu = [{"nazwa": p.nazwa, "cena": p.cena, "kategoria": p.kategoria, "ilosc": p.ilosc} for p in magazyn]
 with open("magazyn.json", "w", encoding="utf-8") as plik:
     json.dump(dane_do_zapisu, plik, ensure_ascii=False, indent=4)
 
 print("zapisano do pliku")
-
 
 while True:
     print("--- MENU ---")
@@ -39,7 +36,7 @@ while True:
         print()
 
     elif opcja == "2":
-        print("\n--- DOSTĘPNE PRODUKTY ---")
+        print("--- DOSTĘPNE PRODUKTY ---")
         for p in magazyn:
             if p.ilosc == 0:
              continue
@@ -48,20 +45,20 @@ while True:
 
     elif opcja == "3":
         szukana = input("Podaj nazwę produktu: ").lower()
-        znaleziono = False
+        czyznaleziono = False
         for p in magazyn:
             if p.nazwa.lower() == szukana:
-                print(f"Znaleziono: {p.nazwa}, Kategoria: {p.kategoria}, Cena: {p.cena} zł, Sztuk: {p.ilosc}")
-                znaleziono = True
+                print(f"Znaleziono: {p.nazwa}, Kategoria: {p.kategoria}, cena: {p.cena} zł, Sztuk: {p.ilosc}")
+                czyznaleziono = True
                 break
-        if not znaleziono:
+        if not czyznaleziono:
             print("Nie znaleziono produktu.")
         print()
 
     elif opcja == "4":
         try:
             max_cena = float(input("Podaj maksymalną cenę: "))
-            print(f"--- PRODUKTY DO {max_cena} zł ---")
+            print(f"--- PRODUKTY DO {max_cena}---")
             for p in magazyn:
                 if p.cena <= max_cena:
                     print(f"Nazwa: {p.nazwa}, Kategoria: {p.kategoria}, Cena: {p.cena} zł, Sztuk: {p.ilosc}")
@@ -71,10 +68,10 @@ while True:
 
     elif opcja == "5":
         podana_nazwa = input("Podaj produkt: ").lower()
-        znaleziono = False
+        czyznaleziono = False
         for p in magazyn:
             if p.nazwa.lower() == podana_nazwa:
-                znaleziono = True
+                czyznaleziono = True
                 if p.ilosc == 0:
                     print("Produkt niedostępny")
                 else:
@@ -82,12 +79,12 @@ while True:
                     print(f"Kupiono {p.nazwa}")
                     print(f"Pozostało sztuk: {p.ilosc}")
                 break
-        if not znaleziono:
+        if not czyznaleziono:
             print("Nie znaleziono produktu")
         print()
 
     elif opcja == "0":
-        print("Koniec programu")
+        print("Zakonczono program")
         break
 
     else:
